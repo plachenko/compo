@@ -1,18 +1,22 @@
 <template>
   <div id="comp_disp">
     <div id="overlay">
+      <!-- <capture /> -->
       <!-- <itemBar @itemSelect="itemSelect($event)" /> -->
-      <capture />
-      <div>
-
-            <div v-for="(i, k) in ">
-
+      <!--
+        <div>
+          <div v-for="(i, k) in ">
         </div>
-
       </div>
       <textarea rows="10" v-model="test" />
+      -->
     </div>
-    <layout />
+    <!--
+    <div style="position: absolute; overflow: hidden">
+      <canvas ref="grid" />
+    </div>
+    -->
+    <!-- <layout /> -->
   </div>
 </template>
 
@@ -36,16 +40,38 @@ export default class App extends Vue {
   private itemSelect(e: any){
     console.log('selected', e);
   }
+
   mounted(){
-    for(const i in document.querySelector('#overlay').style){
-      console.log(i);
+    this.$nextTick(() => {
+      const h = window.innerHeight;
+      const w = window.innerWidth;
+      const can = this.$refs.grid;
+        can.width = w;
+        can.height = h;
+
+      const ctx = can.getContext('2d');
+      ctx.fillStyle = "#CCC";
+
       /*
-      for(const e in i){
-        console.log(i, i[e]);
+      for(let i = 0; i <= w; i += 10){
+        for(let j = 0; j <= h; j += 10){
+          ctx.fillRect(i,0,1,h);
+          ctx.fillRect(0,j,w,1);
+        }
       }
       */
+    });
+
+    /*
+    for(const i in document.querySelector('#overlay').style){
+      console.log(i);
+      for(const e of i){
+        console.log(i, i[e]);
+      }
     }
+    */
   }
+
 }
 </script>
 
