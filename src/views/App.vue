@@ -1,67 +1,38 @@
 <template>
   <div id="comp_disp">
-    <div id="overlay">
-      <!-- <capture /> -->
-      <!-- <itemBar @itemSelect="itemSelect($event)" /> -->
-      <!--
-        <div>
-          <div v-for="(i, k) in ">
-        </div>
-      </div>
-      <textarea rows="10" v-model="test" />
-      -->
-    </div>
-    <!--
-    <div style="position: absolute; overflow: hidden">
-      <canvas ref="grid" />
-    </div>
-    -->
-    <!-- <layout /> -->
+    <Output />
+    <Event />
+    <Grid />
   </div>
 </template>
 
 <script lang="ts">
 // @ is an alias to /src
-import Capture from '@/components/Capture.vue'
-import Layout from '@/components/Layout.vue'
-import ItemBar from '@/components/ItemBar.vue'
-import { Component, Vue, Watch } from 'vue-property-decorator';
+// import Capture from '@/components/Capture.vue';
+import Layout from '@/components/Layout.vue';
+import Grid from '@/components/Grid.vue';
+import ItemBar from '@/components/ItemBar.vue';
+import Event from '@/components/Event.vue';
+import Output from '@/components/Output.vue';
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
   name: 'App',
   components: {
-    Capture,
+    Grid,
+    // Capture,
+    Event,
+    Output,
     Layout,
     ItemBar
   }
 })
 export default class App extends Vue {
-  private test = `<template><div></div></template> <style></style>`;
   private itemSelect(e: any){
     console.log('selected', e);
   }
 
   mounted(){
-    this.$nextTick(() => {
-      const h = window.innerHeight;
-      const w = window.innerWidth;
-      const can = this.$refs.grid;
-        can.width = w;
-        can.height = h;
-
-      const ctx = can.getContext('2d');
-      ctx.fillStyle = "#CCC";
-
-      /*
-      for(let i = 0; i <= w; i += 10){
-        for(let j = 0; j <= h; j += 10){
-          ctx.fillRect(i,0,1,h);
-          ctx.fillRect(0,j,w,1);
-        }
-      }
-      */
-    });
-
     /*
     for(const i in document.querySelector('#overlay').style){
       console.log(i);
@@ -83,9 +54,9 @@ export default class App extends Vue {
   }
   #overlay{
     z-index: 9999;
-    display: flex; 
-    flex-flow: column; 
-    width: 100%; 
+    display: flex;
+    flex-flow: column;
+    width: 100%;
     height: 100%;
     }
 </style>

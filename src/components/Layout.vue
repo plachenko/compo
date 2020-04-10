@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { EventBus } from '@/eventbus';
+import EventBus from '@/EventBus';
 
 @Component({})
 export default class Layout extends Vue{

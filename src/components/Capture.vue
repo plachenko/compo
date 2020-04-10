@@ -3,7 +3,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import { EventBus } from '@/eventbus.ts';
+// import { EventBus } from '@/eventbus.ts';
 
 @Component({})
 export default class Capture extends Vue{
